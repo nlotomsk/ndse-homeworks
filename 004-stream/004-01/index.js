@@ -15,6 +15,13 @@ console.log(result)
 
 console.log('\n Консольная игра «Орёл или решка» \n')
 
+function LogStr(format,result,input,total) {
+    this.format = format,
+    this.result = result,
+    this.input = input,
+    this.total = total
+}
+
 rl.on('line', (input) => {
     //const answer = input
 
@@ -30,17 +37,21 @@ rl.on('line', (input) => {
         console.log(`\n-----Не в этот раз. Удача близка----- \n`)
         //rl.close();
     }
+    
     const date = new Date
     const format = date.toLocaleString()
-    const content = `${format} Загадано: ${result} Ответ: ${input}\n`
+    const str1 = new LogStr(format,result,input)
+    console.log(str1)
+    //fs.writeFileSync(fileName[0],JSON.stringify(str1),{encoding: 'utf8', flag: 'w'})
+    const content = `${format} Загадано: ${result} Ответ: ${input}\n ${str1} \n`
 
     const file = path.join(__dirname, '', fileName[0])
     // const content = 'content \n'
 
-    fs.appendFile(file, content, (err) => {
-        if (err) throw Error(err)
-        console.log('file rewrite')
-    })
+    fs.appendFile(file, `${JSON.stringify(str1)}\n`, (err) => {
+         if (err) throw Error(err)
+         console.log('file rewrite')
+     })
     rl.close();
 
 });
