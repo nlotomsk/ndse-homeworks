@@ -26,7 +26,7 @@ rl.on('line', (input) => {
     const date = new Date
     const format = date.toLocaleString()
     const str1 = new LogStr(format, result, input)
-    fs.appendFile(fileName[0], `${JSON.stringify(str1)}`, (err) => {
+    fs.appendFile(fileName[0], `${JSON.stringify(str1)}\n`, (err) => {
         if (err) throw Error(err)
     })
 });
