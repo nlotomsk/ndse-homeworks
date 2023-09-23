@@ -3,88 +3,30 @@ const { stdin: input, stdout: output } = require('node:process')
 const rl = readline.createInterface({ input, output })
 
 const fs = require('fs')
-const path = require('path')
 
-const fileName = process.argv.slice(2)//.map(n => +n)
+const fileName = process.argv.slice(2)
+console.log('\n Консольная игра «Орёл или решка»\n Ваш ход.\n орел или решка? \n')
 
-console.log(fileName[0])
+function LogStr(format, result, input, total) {
 
-const result = (Math.floor(Math.random() * 2) === 0) ? "орел" : "решка";
-
-console.log(result)
-
-console.log('\n Консольная игра «Орёл или решка» \n')
-
-function LogStr(format,result,input,total) {
     this.format = format,
-    this.result = result,
-    this.input = input,
-    this.total = total
+        this.result = result,
+        this.input = input
 }
 
 rl.on('line', (input) => {
-    //const answer = input
-
+    const result = (Math.floor(Math.random() * 2) === 0) ? "орел" : "решка";
     if (input === result) {
-
-        console.log(input)
-
         console.log(`\n-----Выиграл-----\n`)
-        //rl.close();
+        rl.close()
     } else {
-
-        console.log(input)
-        console.log(`\n-----Не в этот раз. Удача близка----- \n`)
-        //rl.close();
+        console.log(`-----Не в этот раз. Удача близка----- \n`)
+        console.log('\n Попробуй еще.\n')
     }
-    
     const date = new Date
     const format = date.toLocaleString()
-    const str1 = new LogStr(format,result,input)
-    console.log(str1)
-    //fs.writeFileSync(fileName[0],JSON.stringify(str1),{encoding: 'utf8', flag: 'w'})
-    const content = `${format} Загадано: ${result} Ответ: ${input}\n ${str1} \n`
-
-    const file = path.join(__dirname, '', fileName[0])
-    // const content = 'content \n'
-
-    fs.appendFile(file, `${JSON.stringify(str1)}\n`, (err) => {
-         if (err) throw Error(err)
-         console.log('file rewrite')
-     })
-    rl.close();
-
+    const str1 = new LogStr(format, result, input)
+    fs.appendFile(fileName[0], `${JSON.stringify(str1)}`, (err) => {
+        if (err) throw Error(err)
+    })
 });
-//rl.emit(ReadableStream)
-// console.log(rl.emit(ReadableStream))
-// //const answer = input
-// const date = new Date
-// const format = date.toLocaleString()
-// const content = `${format} Загадано: ${result} Ответ: ${answer} \n`
-
-// const writeStr = fs.createWriteStream(fileName[0])
-// writeStr.write(content, 'utf-8')
-// writeStr.end()
-
-// writeStr.on('finish', () => {
-//     console.log('Finish')
-// })
-// writeStr.on('close', () => {
-//     console.log('close')
-// })
-// writeStr.on('err', () => {
-//     console.error('err')
-// })
-// const dir = path.join(__dirname, 'log')
-
-// fs.mkdir(dir, (err) => {
-//     if (err) throw Error(err)
-//     console.log('ok')
-// })
-// const file = path.join(__dirname, '', fileName[0])
-// // const content = 'content \n'
-
-// fs.appendFile(file, content, (err) => {
-//     if (err) throw Error(err)
-//     console.log('file rewrite')
-// })
