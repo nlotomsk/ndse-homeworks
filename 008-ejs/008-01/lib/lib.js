@@ -15,6 +15,11 @@ class Books {
 
 const stor = {
     books: [],
-}
+};
+
+[1, 2, 3].map(el => {
+    const newBooks = new Books(`title ${el}`, `description = ${el}`, `authors ${el}`, ``,`fileCover ${el}`, `fileName ${el}`, `fileBook ${el}`);
+    stor.books.push(newBooks);
+});
 
 module.exports = { stor, Books }

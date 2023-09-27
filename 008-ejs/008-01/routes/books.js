@@ -4,23 +4,31 @@ const { stor, Books } = require('../lib/lib')
 const fileMulter = require('../middlewafe/file')
 
 router.get('/', (req, res) => {
-    console.log('books get')
     const { books } = stor
-    res.json(books)
+    res.render('books/index', {
+        title: 'Books',
+        books: books,
+    })
 })
 
-router.post('/',
-    fileMulter.single('fileBook'),
-    (req, res) => {
+router.get('/create', (req, res) => {
+    res.render('books/create', {
+        title: 'Books | create',
+        books: {},
+    })
+});
+
+router.post('/create', (req, res) => {
         const { books } = stor
         const { title, description, authors, favorite, fileCover, fileName, fileBook } = req.body
-        const newBooks = new Books(title, description, authors, favorite, fileCover, fileName)
-        newBooks.fileBook = req.file.path
-        newBooks.fileName = req.file.filename
+        const newBooks = new Books(title, description, authors, favorite, fileCover, fileName, fileBook)
+        //newBooks.fileBook = req.file.path
+        //newBooks.fileName = req.file.filename
         books.push(newBooks)
-        res.status(201)
-        res.json(newBooks)
+        //res.status(201)
+        //res.json(newBooks)
         fileID = newBooks.id
+        res.redirect('/books')
     })
 
 router.get('/:id', (req, res) => {
@@ -28,64 +36,66 @@ router.get('/:id', (req, res) => {
     const { id } = req.params
     const idx = books.findIndex(el => el.id === id)
 
-    if (idx !== -1) {
-        res.json(books[idx])
-    } else {
-        res.status(404)
-        res.json('404 | страница не найдена')
+    if (idx === -1) {
+        res.redirect('/404')
+        //res.json(books[idx])
     }
+        res.render("books/view", {
+            title: "Books | view",
+            books: books[idx],
+        })
 })
 
-router.get('/:id/download', (req, res) => {
-    console.log('books get:id')
+
+router.get('/update/:id', (req, res) => {
     const { books } = stor
     const { id } = req.params
     const idx = books.findIndex(el => el.id === id)
-    if (idx !== -1) {
-        res.download(__dirname+`/../${books[idx].fileBook}`, `${books[idx].fileName}`);
-    } else {
-        res.status(404)
-        res.json('404 | страница не найдена')
-    }
-})
 
-router.put('/:id', (req, res) => {
+    if (idx === -1) {
+        res.redirect('/404')
+    }
+
+    res.render("books/update", {
+        title: "books | update",
+        books: books[idx],
+    })
+});
+
+
+router.post('/update/:id', (req, res) => {
     const { books } = stor
     const { title, description, authors, favorite, fileCover, fileName, fileBook } = req.body
     const { id } = req.params
     const idx = books.findIndex(el => el.id === id)
 
-    if (idx !== -1) {
-        books[idx] = {
-            ...books[idx],
-            title,
-            description,
-            authors,
-            favorite,
-            fileCover,
-            fileName,
-            fileBook
+    if (idx === -1) {
+        res.redirect('/404')
+        
         }
-        res.json(books[idx])
-    } else {
-        res.status(404)
-        res.json('404 | страница не найдена')
-    }
+    books[idx] = {
+        ...books[idx],
+        title,
+        description,
+        authors,
+        favorite,
+        fileCover,
+        fileName,
+        fileBook
+    } 
+    res.redirect(`/books`)
 })
 
-router.delete('/:id', (req, res) => {
+router.post('/delete/:id', (req, res) => {
     const { books } = stor
     const { id } = req.params
     const idx = books.findIndex(el => el.id === id)
 
-    if (idx !== -1) {
-
-        books.splice(idx, 1)
-        res.json('ok')
-    } else {
-        res.status(404)
-        res.json('404 | страница не найдена')
-    }
+    if (idx === -1) {
+        res.redirect('/404')
+    } 
+    books.splice(idx, 1)
+    res.redirect('/books')
 })
 
 module.exports = router
