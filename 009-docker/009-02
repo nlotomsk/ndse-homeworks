@@ -1,1 +1,43 @@
-02
+```
+senibratov@debian:~$ sudo docker pull node:20.8
+20.8: Pulling from library/node                                                                                                                                                        
+167b8a53ca45: Pull complete 
+b47a222d28fa: Pull complete 
+debce5f9f3a9: Pull complete 
+1d7ca7cd2e06: Pull complete 
+94c7791033e8: Pull complete 
+c72c41e7648d: Pull complete 
+24b3fec6157f: Pull complete 
+ba7d01e69714: Pull complete 
+Digest: sha256:6b3f9aa7eefa8d4c93d43914e78aa2bfea9a12808b0059e5da78854dfa8b8768
+Status: Downloaded newer image for node:20.8
+docker.io/library/node:20.8
+```
+```
+senibratov@debian:~$ sudo docker run -it -e NAME=VYACHESLAV -e SURNAME=SENIBRATOV --name mynode node:20.8
+Welcome to Node.js v20.8.0.
+Type ".help" for more information.
+> console.log(`Привет,${process.env.NAME} ${process.env.SURNAME}!`)
+Привет,VYACHESLAV SENIBRATOV!
+undefined
+> .exit
+```
+```
+senibratov@debian:~$ sudo docker stop mynode
+mynode
+```
+```
+senibratov@debian:~$ sudo docker ps -a
+CONTAINER ID   IMAGE          COMMAND                  CREATED             STATUS                      PORTS     NAMES
+2aa879142184   node:20.8      "docker-entrypoint.s…"   52 seconds ago      Exited (0) 24 seconds ago             mynode
+62ff957ca8cd   postgres       "docker-entrypoint.s…"   About an hour ago   Exited (0) 54 minutes ago             some-postgres
+4a21c053c052   d03fb00cbb41   "python3 ./python_ap…"   6 weeks ago         Exited (137) 6 weeks ago              nice_banzai
+0074b51e89ee   025c9390d249   "python3 ./python_ap…"   6 weeks ago         Exited (137) 6 weeks ago              kind_meitner
+51061e5f4ad8   fd2b03d4f2e1   "python3 ./python_ap…"   6 weeks ago         Exited (137) 6 weeks ago              trusting_grothendieck
+963eb9740352   fd2b03d4f2e1   "python3 ./python_ap…"   6 weeks ago         Exited (0) 6 weeks ago                bold_elbakyan
+67a92282e14a   fd2b03d4f2e1   "-p 5290:5290"           6 weeks ago         Created                               goofy_lalande
+```
+```
+senibratov@debian:~$ sudo docker rm mynode
+mynode
+```
