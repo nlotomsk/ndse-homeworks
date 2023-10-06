@@ -57,11 +57,26 @@
 ## Задание 2 - Environment Variables
 
 Используя Docker CLI выполните следующие действия:
-1. Загрузите образ node версии 15.14
+1. Загрузите образ node версии 20.8
+
+![image](https://github.com/nlotomsk/ndse-homeworks/assets/93542374/ee96dcf5-5c56-42c1-91be-691eb73fd372)
+   
 1. Запустите контейнер node в интерактивном режиме подключения терминала, поименуйте его `mynode`, передайте две переменные среды `NAME=<ваше имя>` и `SURNAME=<ваша фамилия>`
+
+![image](https://github.com/nlotomsk/ndse-homeworks/assets/93542374/07aff16d-4944-45f1-af44-c73637059db2)
+
 1. В интерактивной среде выполнения node выполните скрипт, который выведет на экран приветсвтие: `Привет, <ваше имя> <ваша фамилия>!`, эти данные должны быть получены из переменных среды
+
+![image](https://github.com/nlotomsk/ndse-homeworks/assets/93542374/24522af7-b640-43e1-b0cd-993818844c9a)
+
 1. Остановите контейнер
-1. Удалите образ node версии 15.14
+
+![image](https://github.com/nlotomsk/ndse-homeworks/assets/93542374/02b7e3d0-e2ad-4f37-b288-d5d97e0f324c)
+
+1. Удалите образ node версии 20.8
+
+![image](https://github.com/nlotomsk/ndse-homeworks/assets/93542374/f4c3a4fe-18c0-42fc-b15f-d0b1044336f2)
+
 
 ### Критерии выполнения
 
