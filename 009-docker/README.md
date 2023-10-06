@@ -9,15 +9,46 @@
 
 ## Задание 1 - Docker CLI
 1. Загрузите образ `busybox` последней версии
+
+![image](https://github.com/nlotomsk/ndse-homeworks/assets/93542374/85d401c1-050f-44a0-8b69-dc2e8201e85d)
+
+   
 1. Запустите новый контейнер `busybox` с командой `ping` сайта `netology.ru`, и количеством пингов 7, поименуйте контейнер `pinger`
+
+![image](https://github.com/nlotomsk/ndse-homeworks/assets/93542374/ed479706-c830-4e68-804a-8675334d1e6d)
+
 1. Выведите на список всех контейнеров - запущенных и остановленных
+
+![image](https://github.com/nlotomsk/ndse-homeworks/assets/93542374/d6cff9be-8c42-43cf-be01-74cff3ac72b5)
+   
 1. Выведите на экран логи контейнера с именем `pinger`
+
+![image](https://github.com/nlotomsk/ndse-homeworks/assets/93542374/04d57dc6-3ab5-4a59-842f-d8d440ad1390)
+   
 1. Запустите второй раз контейнера с именем `pinger`
+
+![image](https://github.com/nlotomsk/ndse-homeworks/assets/93542374/9083a312-c567-4e63-8b53-152283d1fdf7)
+   
 1. Выведите на список всех контейнеров - запущенных и остановленных
+
+![image](https://github.com/nlotomsk/ndse-homeworks/assets/93542374/ab9e18d9-4c38-4745-b9b0-c9b295a753d4)
+
 1. Выведите на экран логи контейнера с именем `pinger`
+
+![image](https://github.com/nlotomsk/ndse-homeworks/assets/93542374/6ba098fb-e3a8-447e-b11b-8cfba29fdb3d)
+
 1. Определите по логам общее количество запусков команды `ping` и какое общее количество отправленых запросов
+
+Запусков команды 2. Общее количество отправленных запросов 14.
+
 1. Удалите контейнер с именем `pinger`
+
+![image](https://github.com/nlotomsk/ndse-homeworks/assets/93542374/96cd2e02-e881-4c65-858c-e45b38e80ba6)
+
 1. Удалите образ `busybox`
+
+![image](https://github.com/nlotomsk/ndse-homeworks/assets/93542374/c4a93eff-05b9-4883-9097-4a67522a93b2)
+   
 
 ### Критерии выполнения
 
