@@ -15,8 +15,23 @@
 #### Задание 2
 В файле **README.md** написать следующие запросы для **MongoDB**:
  - запрос(ы) для *вставки* данных минимум о двух книгах в коллекцию **books**,
+
+```sql
+db.getCollection("books").insertMany([{title: "book_1", description: "str_book", authors: "S.Book"},{title: "book_2",description: "str_book_book", authors: "B.B. Book"}])
+
+```
+   
  - запрос для *поиска* полей документов коллекции **books** по полю *title*,
+
+```
+
+```
+ 
  - запрос для *редактирования* полей: *description* и *authors* коллекции **books** по *_id* записи.
+
+```
+
+```
  
 *Каждый документ коллекции **books** должен содержать следующую структуру данных: 
 ```javascript
