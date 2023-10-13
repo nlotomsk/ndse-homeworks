@@ -17,14 +17,15 @@
  - запрос(ы) для *вставки* данных минимум о двух книгах в коллекцию **books**,
 
 ```sql
-db.getCollection("books").insertMany([{title: "book_1", description: "str_book", authors: "S.Book"},{title: "book_2",description: "str_book_book", authors: "B.B. Book"}])
+db.getCollection("books").insertMany([{title: "book_1", description: "str_book", authors: "S.Book"},
+{title: "book_2",description: "str_book_book", authors: "B.B. Book"}])
 
 ```
    
  - запрос для *поиска* полей документов коллекции **books** по полю *title*,
 
 ```
-
+db.getCollection("books").find({title: ""})
 ```
  
  - запрос для *редактирования* полей: *description* и *authors* коллекции **books** по *_id* записи.
