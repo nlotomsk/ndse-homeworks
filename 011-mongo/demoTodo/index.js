@@ -4,6 +4,8 @@ const mongoose = require('mongoose');
 const errorMiddleware = require('./middleware/error');
 const todoApiRouter = require('./routes/api/todo');
 
+const UrlDB = process.env.UrlDB
+
 const app = express();
 app.use(express.json());
 
@@ -11,14 +13,15 @@ app.use('/api/todo', todoApiRouter);
 
 app.use(errorMiddleware);
 
-UrlDB = "mongodb://admin:pass@mongo:27017/"
+// UrlDB = "mongodb://admin:pass@localhost:27017/"
 
 async function start(PORT, UrlDB) {
     try {
         await mongoose.connect(UrlDB, {
-            dbName: "demo"
+            dbName : "demo"
         });
         app.listen(PORT)
+        console.log("connect")
     } catch (e) {
         console.log(e);
     }

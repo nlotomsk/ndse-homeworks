@@ -90,17 +90,17 @@ router.post('/update/:id', (req, res) => {
     res.redirect(`/todo`);
 });
 
-router.post('/delete/:id', (req, res) => {
-    const { todo } = stor
-    const { id } = req.params
-    const idx = todo.findIndex(el => el.id === id)
+// router.post('/delete/:id', (req, res) => {
+//     const { todo } = stor
+//     const { id } = req.params
+//     const idx = todo.findIndex(el => el.id === id)
 
-    if (idx === -1) {
-        res.redirect('/404')
-    }
+//     if (idx === -1) {
+//         res.redirect('/404')
+//     }
 
-    todo.splice(idx, 1)
-    res.redirect('/todo')
-});
+//     todo.splice(idx, 1)
+//     res.redirect('/todo')
+// });
 
 module.exports = router;

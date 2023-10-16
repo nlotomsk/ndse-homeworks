@@ -6,6 +6,7 @@ router.get('/', async (req, res) => {
     try {
         const todo = await Todo.find().select('-__v')
         res.json(todo)
+        console.log(todo)
     } catch (e) {
         res.status(500).json(e)
     }
