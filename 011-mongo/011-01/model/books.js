@@ -29,11 +29,7 @@ const todoSchema = new Schema({
         type: String,
         default: "",
     }
-    // ,
-    // id: {
-    //     type: String,
-    //     default: "",
-    // }
+
 })
 
 module.exports = model('Books', todoSchema)
