@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
-//const { stor, Books } = require('../lib/lib')
-//const fileMulter = require('../middlewafe/file')
+
+
 const Books = require('../model/books')
 
 router.get('/', async (req, res) => {
@@ -49,10 +49,8 @@ router.get('/:id', async (req, res) => {
 })
 
 router.put('/:id', async (req, res) => {
-    // const { books } = stor
     const { title, description, authors, favorite, fileCover, fileName } = req.body
     const { id } = req.params
-    //const idx = books.findIndex(el => el.id === id)
     const books = await Books.findById(id).select('-__v')
     console.log(books)
     if (books !== null) {
@@ -61,7 +59,6 @@ router.put('/:id', async (req, res) => {
             const booksPut = await Books.findById(id).select('-__v')
             console.log(booksPut)
             res.json(booksPut)
-            //res.redirect(`/api/books/${id}`)
         } catch (e) {
             res.status(500).json(e)
         }
@@ -71,21 +68,6 @@ router.put('/:id', async (req, res) => {
         res.json('404 | страница не найдена')
     }
 
-    // if (idx !== -1) {
-    //     // books[idx] = {
-    //     //     ...books[idx],
-    //     //     title,
-    //     //     description,
-    //     //     authors,
-    //     //     favorite,
-    //     //     fileCover,
-    //     //     fileName
-    //     // }
-    //     // res.json(books[idx])
-    // } else {
-    //     res.status(404)
-    //     res.json('404 | страница не найдена')
-    // }
 })
 
 router.delete('/:id', async (req, res) => {
