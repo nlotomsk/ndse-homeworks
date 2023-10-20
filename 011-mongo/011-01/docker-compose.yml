@@ -8,8 +8,6 @@ services:
       - 27017:27017
     environment:
         MONGO_INITDB_DATABASE: db
-      # MONGO_INITDB_ROOT_USERNAME: root
-      # MONGO_INITDB_ROOT_PASSWORD: root
     volumes:
       - ./datadir:/data/db
 
@@ -21,4 +19,3 @@ services:
     environment:
       ME_CONFIG_MONGODB_ADMINUSERNAME: root
       ME_CONFIG_MONGODB_ADMINPASSWORD: example
-      #ME_CONFIG_MONGODB_URL: mongodb://root:root@mongo:27017/
