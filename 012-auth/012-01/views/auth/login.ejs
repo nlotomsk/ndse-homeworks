@@ -1,13 +1,24 @@
-<form action="/login" method="post">
-    <div>
-        <label>Логин:</label>
-        <input type="text" name="username" /><br />
-    </div>
-    <div>
-        <label>Пароль:</label>
-        <input type="password" name="password" />
-    </div>
-    <div>
-        <input type="submit" value="Войти" />
-    </div>
-</form>
+<%- include('../port/layout-start', {title: title}) %>
+    <%- include('../port/menu') %>
+
+        <form action="/login" method="POST">
+            <div>
+                <label>Логин:</label>
+                <input type="text" name="user" /><br />
+            </div>
+            <div>
+                <label>Пароль:</label>
+                <input type="password" name="password" />
+            </div>
+            <div>
+                <input type="submit" value="Войти" />
+            </div>
+
+        </form>
+        <!-- <div>
+            <form action="/logout" method="post">
+                <button class="logout" type="submit">Sign out</button>
+                <input type="hidden" name="_csrf">
+            </form>
+        </div> -->
+        <%- include('../port/layout-end') %>

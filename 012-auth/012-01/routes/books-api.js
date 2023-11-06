@@ -16,6 +16,7 @@ router.get('/', async (req, res) => {
 
 router.post('/',
     async (req, res) => {
+        console.log("Добаление книги");
         const { title, description, authors, favorite, fileCover, fileName } = req.body
         const newBooks = new Books({
             title,
@@ -27,8 +28,10 @@ router.post('/',
         })
         try {
             await newBooks.save()
+            console.log(newBooks);
             res.json(newBooks)
         } catch (e) {
+            console.log(e);
             res.status(500).json(e)
         }
     })
