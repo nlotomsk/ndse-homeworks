@@ -53,10 +53,18 @@ app.use(
 app.use(passport.initialize())
 app.use(passport.session())
 
-passport.use(new LocalStrategy(User.authenticate()));
+
+const options = {
+    usernameField: "username",
+    passwordField: "password",
+}
+
+
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
-//passport.use(userDB.createStrategy());
+
+passport.use(new LocalStrategy(User.authenticate()));
+//passport.use(() => {console.log("test");}, User.createStrategy());
 
 // passport.serializeUser(userDB.serializeUser());
 // passport.deserializeUser(userDB.deserializeUser());
@@ -135,7 +143,7 @@ app.get("/register", function(req, res){
 app.post("/register", function(req, res){
     // console.log(req.body.username);
     // console.log(req.body.password);
-    User.register(new User({username: req.body.username}), req.body.password, function(err, user){
+    User.register(new User({user: user}), password, function(err, user){
         if(err){
             console.log(err);
             return res.render("register");
@@ -146,11 +154,16 @@ app.post("/register", function(req, res){
     });
 });
 
-app.post("/login", passport.authenticate("local",{
+app.post("/login",
+ passport.authenticate("local",{
     successRedirect: "/secret",
-    failureRedirect: "/login"
-}), function(req, res){
-    
+    failureRedirect: "/login",
+    // failureMessage: true,
+}),
+ function(req, res){
+    console.log("req.user: ", req.user)
+    console.log(req.body.user);
+    console.log(req.body.password);
 });
 
 
