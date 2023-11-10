@@ -100,7 +100,7 @@ passport.deserializeUser(async (id, done) => {
     console.log("ljhgopuig  " + id);
     try {
         const user = await User.findOne({ _id: id });
-        console.log("123"+user.id);
+        console.log("123" + user.id);
         return done(null, user.id);
     } catch (err) {
         next(err);
@@ -160,51 +160,17 @@ app.post('/login', passport.authenticate('local', {
     successRedirect: '/',
     failureRedirect: '/login?error=true'
 }));
-
-//------------------------------
-// passport.use(new LocalStrategy(async function (username, password, done) {
-// 	const user =  User.findOne({ username: username }).orFail('Incorrect username.');
-
-//         // function (user) {
-// 		// // if (err) return done(err);
-// 		// if (!user) return done(null, false);
-
-// 		await bcrypt.compare(password, user.password, 
-
-//             function (res)
-//             {
-//                 console.log('pass customs');
-//                 console.log(res);
-// 			// if (err) return done(err);
-// 			 if (res === false) return done(null, false);
-
-// 			return done(null, user);
-// 		})
-// 	})
-// );
-
-
-// const options = {
-//     usernameField: "username",
-//     passwordField: "password",
-// }
-
-// passport.use(new LocalStrategy(options, verify));
-
-//Проверка авторизации для страниц
+//--------------------------------//
+//Проверка авторизации для страниц//
+//--------------------------------//
 const isLoggedIn = (req, res, next) => {
-    console.log(req.isAuthenticated());
-    //console.log(req.session.isAuth);
+
     if (req.isAuthenticated()) {
         console.log("Авторизован");
         next();
     } else {
         console.log("Не авторизован");
-        return res.redirect('/login'
-            // , {
-            //     title: 'login'
-            // }
-        );
+        return res.redirect('/login');
     }
 };
 
@@ -318,37 +284,8 @@ app.post("/register", async (req, res) => {
     // });
 });
 
-// app.post("/login", async (req,res) => {
-//     const { email, password } = req.body;
-
-//     const user = await User.findOne({ email });
-
-//     if (!user) {
-//         return res.redirect("/login");
-//     }
-
-//     const isMatch = await bcrypt.compare( password, user.password );
-
-//     if (!isMatch) {
-//         return res.redirect("/login");
-//     }
-
-//     req.session.isAuth = true;
-//     res.redirect("/api/user/me", user);
-// });
-
-
-
-// const auth = passport.authenticate('local', {
-//     successRedirect: '/',
-//     failureRedirect: '/login'
-//   })
-
-//app.use('/', homeRouter);
 app.get('/', (req, res) => {
-    // req.session.isAuth = true;
-    //console.log(req.session);
-    res.render('index', {
+        res.render('index', {
         title: 'Главная библиотека',
     })
 });
@@ -364,31 +301,26 @@ app.get('/login', (req, res) => {
 });
 
 app.post('/logout', (req, res, next) => {
-	res.clearCookie('connect.sid');  // clear the cookie
+    res.clearCookie('connect.sid');  // clear the cookie
     res.redirect('/');
 });
 
-// app.post('/logout', (req, res) => {
-//     //req.logout();
-    
-// 	res.redirect('/');
-//     // req.logout(function(err) {
-//     //   if (err) { return next(err); }
-//     //   return res.redirect('/');
-//     // });
-// })
-
 ////app.use('/api/user/me' , profileRouter)
 
-app.get('/api/user/me', isLoggedIn, (req, res) => {
+app.get('/api/user/me', isLoggedIn, async (req, res) => {
+
+ 
+        
+            const user = await User.findOne({ _id: req.user });
+            console.log("123----55" + user);
+    
+
     //console.log(req);
     res.render('users/profile', {
         title: 'Профиль юзера',
-
-        user: req.username
-
+        user: user
     })
-    console.log(req.username);
+    //console.log(req);
 });
 
 
