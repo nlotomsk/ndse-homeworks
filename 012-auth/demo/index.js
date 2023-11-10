@@ -1,8 +1,8 @@
-const express = require('express')
-const session = require('express-session')
-const passport = require('passport')
+const express       = require('express')
+const session       = require('express-session')
+const passport      = require('passport')
 const LocalStrategy = require('passport-local')
-const db = require('./db')
+const db            = require('./db')
 
 const verify = (username, password, done) => {
   db.users.findByUsername(username, (err, user) => {

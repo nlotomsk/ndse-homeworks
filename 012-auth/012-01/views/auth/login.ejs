@@ -2,9 +2,13 @@
     <%- include('../port/menu') %>
 
         <form action="/login" method="POST">
-            <div>
+            <!-- <div>
                 <label>Логин:</label>
-                <input type="text" name="user" /><br />
+                <input type="text" name="username" /><br />
+            </div> -->
+            <div>
+                <label>Email:</label>
+                <input type="email" name="email" /><br />
             </div>
             <div>
                 <label>Пароль:</label>
@@ -15,10 +19,11 @@
             </div>
 
         </form>
-        <!-- <div>
+        <a href="/register">Register</a>
+        <div>
             <form action="/logout" method="post">
                 <button class="logout" type="submit">Sign out</button>
                 <input type="hidden" name="_csrf">
             </form>
-        </div> -->
+        </div>
         <%- include('../port/layout-end') %>

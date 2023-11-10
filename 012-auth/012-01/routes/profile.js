@@ -6,9 +6,12 @@ const passport = require('passport')
 //const Auth = require('../model/auth')
 
 router.get('/', (req, res) => {
-    res.render('users/profile', {
+   console.log(req.username); 
+   res.render('users/profile', {
         title: 'Профиль юзера',
+        
         user: req.user
+        
     })
     console.log(req.user);
 });

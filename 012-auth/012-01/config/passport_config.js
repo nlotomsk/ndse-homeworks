@@ -20,38 +20,38 @@ const User = require('../model/auth')
 ////passport.serializeUser(User.serializeUser());
 ////passport.deserializeUser(User.deserializeUser());
 
-const options = {
-  usernameField: "user",
-  passwordField: "password",
-}
+// const options = {
+//   usernameField: "user",
+//   passwordField: "password",
+// }
 
-passport.use(
-  new LocalStrategy(options, async function (
-    user,
-    password,
-    done
-  ) {
-    //const { id } = req.params
+// passport.use(
+//   new LocalStrategy(options, async function (
+//     user,
+//     password,
+//     done
+//   ) {
+//     //const { id } = req.params
     
-    const userAuth = await userDB.findOne({ user: user }).select('-__v')
-    console.log(userAuth)
-    // if (books !== -1) {
-    //   console.log(id)
-    //   res.render("./books/view", {
-    //     title: "Books | view",
-    //     books: books,
-    //   })
-      console.log(`username: ` + user);
-      console.log(`password: ` + password);
-      console.log(`username: ` + userAuth.user);
-      console.log(`password: ` + userAuth.password);
-      if (user === userAuth.user && password === userAuth.password) {
-        return done(null, userAuth);
-      } else {
-        return done(null, false);
-      }
-    })
-);
+//     const userAuth = await userDB.findOne({ user: user }).select('-__v')
+//     console.log(userAuth)
+//     // if (books !== -1) {
+//     //   console.log(id)
+//     //   res.render("./books/view", {
+//     //     title: "Books | view",
+//     //     books: books,
+//     //   })
+//       console.log(`username: ` + user);
+//       console.log(`password: ` + password);
+//       console.log(`username: ` + userAuth.user);
+//       console.log(`password: ` + userAuth.password);
+//       if (user === userAuth.user && password === userAuth.password) {
+//         return done(null, userAuth);
+//       } else {
+//         return done(null, false);
+//       }
+//     })
+// );
 // //-------------------------------
 
 // // passport.serializeUser(userDB.serializeUser());

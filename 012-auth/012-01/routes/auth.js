@@ -6,6 +6,8 @@ const passport = require('passport')
 const User = require('../model/user')
 
 router.get('/', (req,res) => {
+    // req.session.isAuth = true;
+    // console.log(req.session);
     console.log('Пошел на форму авторизации');
     res.render('auth/login', {
         title: 'Login'
