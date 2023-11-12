@@ -1,16 +1,17 @@
 <%- include('../port/layout-start', {title: title}) %>
     <%- include('../port/menu') %>
-
-        <form action="/login" method="POST">
-            <!-- <div>
-                <label>Логин:</label>
-                <input type="text" name="username" /><br />
-            </div> -->
-            <div>
+        <div>
+            <% if (error) { %>
+                <p class="err-msg">Username or password is incorrect</p>
+                <% } %>
+                    <h1>Login</h1>
+        </div>
+        <form action="/api/user/login" method="POST">
+            <div class="form-group">
                 <label>Email:</label>
                 <input type="email" name="email" /><br />
             </div>
-            <div>
+            <div class="form-group">
                 <label>Пароль:</label>
                 <input type="password" name="password" />
             </div>
@@ -19,11 +20,4 @@
             </div>
 
         </form>
-        <a href="/register">Register</a>
-        <div>
-            <form action="/logout" method="post">
-                <button class="logout" type="submit">Sign out</button>
-                <input type="hidden" name="_csrf">
-            </form>
-        </div>
         <%- include('../port/layout-end') %>

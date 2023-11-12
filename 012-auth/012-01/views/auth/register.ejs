@@ -1,17 +1,19 @@
-<h1>Sign Up Form</h1>
-<form action="/register" method="POST">
-    <div>
-        <label>Логин:</label>
-        <input type="text" name="username" /><br />
-    </div>
-    <div>
-        <label>Email:</label>
-        <input type="email" name="email" /><br />
-    </div>
-    <div>
-        <label>Пароль:</label>
-        <input type="password" name="password" />
-    </div>
-    <button>Register</button>
-</form>
-<li><a href="/login">login!</a></li>S
+<%- include('../port/layout-start', {title: title}) %>
+    <%- include('../port/menu') %>
+        <h1>Sign Up Form</h1>
+                <form action="/api/user/signup" method="POST">
+                    <div class="form-group">
+                        <label>Логин:</label>
+                        <input type="text" name="username" /><br />
+                    </div>
+                    <div class="form-group">
+                        <label>Email:</label>
+                        <input type="email" name="email" /><br />
+                    </div>
+                    <div class="form-group">
+                        <label>Пароль:</label>
+                        <input type="password" name="password" />
+                    </div>
+                    <button>Sign Up</button>
+                </form>
+<%- include('../port/layout-end') %>
